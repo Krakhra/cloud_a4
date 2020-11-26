@@ -14,6 +14,7 @@ app.use(bodyParser.urlencoded({
   extended:true
 }));
 app.use(bodyParser.json());
+count = 1
 
 app.get('/article',(req,res)=>{
   request(url,function(error,response,body){
@@ -33,12 +34,15 @@ app.post('/listen',(req,res)=>{
     'OutputFormat': 'mp3',
     'VoiceId':'Kimberly'
   }
+
+  // Fs.unlinkSync('./public/speech.mp3');
+
   Polly.synthesizeSpeech(params, (err, data) => {
     if (err) {
         console.log(err.code)
     } else if (data) {
         if (data.AudioStream instanceof Buffer) {
-            Fs.writeFile("./public/speech.mp3", data.AudioStream, function(err) {
+            Fs.writeFile("./public/speech" + count + ".mp3", data.AudioStream, function(err) {
                 if (err) {
                     return console.log(err)
                 }
@@ -48,7 +52,8 @@ app.post('/listen',(req,res)=>{
     }
   })  
   console.log(req.body.text)
-  res.send('works')
+  count = count + 1
+  res.send("./speech" + count +".mp3")
 })
 app.listen(8000, ()=>{
   console.log('Server Running')
