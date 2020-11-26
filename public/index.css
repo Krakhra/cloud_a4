@@ -1,0 +1,25 @@
+body{
+  background-color:#41B3A3;
+}
+
+.heading{
+  font-family: 'Open Sans', sans-serif;
+  color:white;
+  font-size: 50px;
+  font-weight: bolder;
+  margin-left:50px;
+}
+
+.text{
+  width:50%;
+  font-family: 'Open Sans', sans-serif;
+  color:white;
+  font-size: 35px;
+  font-weight: bolder;
+  margin:auto;
+}
+
+.buttonContainer{
+  width:50%;
+  margin:auto;
+}
